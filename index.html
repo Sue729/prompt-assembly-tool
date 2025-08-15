@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt 生成器 (Excel to JSONL)</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 SheetJS 库用于解析 Excel 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Prompt 生成器 (Excel to JSONL)</h1>
+        
+        <div class="main-content">
+            <!-- 左侧：Prompt 输入区 -->
+            <div class="panel">
+                <h2>1. 粘贴 Prompt 模板</h2>
+                <p>请使用 <code>{列名}</code> 的格式来表示变量。例如：<code>{city}</code>。</p>
+                <textarea id="prompt-template" rows="15" placeholder="例如：请介绍一下中国的城市 {city}，它以 {feature} 闻名。"></textarea>
+            </div>
+
+            <!-- 右侧：Excel 上传区 -->
+            <div class="panel">
+                <h2>2. 上传 Excel 文件</h2>
+                <p>Excel 的第一行应为表头（列名），且必须与 Prompt 模板中的变量名完全对应。</p>
+                <input type="file" id="excel-file-input" accept=".xlsx, .xls">
+                <div class="excel-format-info">
+                    <p><b>Excel 格式示例：</b></p>
+                    <table>
+                        <tr>
+                            <th>city</th>
+                            <th>feature</th>
+                        </tr>
+                        <tr>
+                            <td>北京</td>
+                            <td>烤鸭和故宫</td>
+                        </tr>
+                        <tr>
+                            <td>上海</td>
+                            <td>东方明珠和外滩</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作与输出区 -->
+        <div class="action-panel">
+            <button id="generate-btn">3. 生成 JSONL 文件</button>
+            <div id="status-message"></div>
+            <a id="download-link" class="hidden">下载 output.jsonl</a>
+        </div>
+        
+        <div class="output-preview-panel hidden">
+            <h2>生成内容预览 (前5行)</h2>
+            <pre id="output-preview"></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
