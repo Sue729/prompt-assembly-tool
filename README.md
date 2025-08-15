@@ -1,0 +1,5 @@
+- 这是一个用于将**prompt模板和变量**合成为**多条prompt样本**的小工具，用于批量生产模型结果
+- 访问页面：https://sue729.github.io/prompt-assembly-tool/
+- 请注意**prompt中的{变量}** 和**Excel中的{表头}** 名称需要保持一致
+- 输入你的prompt模板，并将变量名称设置为你的Excel文件首行的表头，最终会生产一个jsonl文件以方便你提供给LLM帮你分析和输出批量的结果。
+- 如果有帮助的话可以点个Star^ ^
